@@ -44,7 +44,7 @@ const MessageOption = () => {
 };
 
 
-const DocMsg = ({ el }) => {
+const DocMsg = ({ el, menu }) => {
     const theme = useTheme();
     return (
         <Stack direction="row" justifyContent={el.incoming ? "start" : "end"}>
@@ -83,13 +83,12 @@ const DocMsg = ({ el }) => {
                     </Typography>
                 </Stack>
             </Box>
-            {/* {menu && <MessageOption />} */}
-            <MessageOption />
+            {menu && <MessageOption />}
         </Stack>
     );
 };
 
-const LinkMsg = ({ el }) => {
+const LinkMsg = ({ el, menu }) => {
     const theme = useTheme()
     return (
         <Stack
@@ -139,11 +138,11 @@ const LinkMsg = ({ el }) => {
                     </Typography>
                 </Stack>
             </Box>
-            <MessageOption />
+            {menu && <MessageOption />}
         </Stack>
     )
 }
-const ReplyMsg = ({ el }) => {
+const ReplyMsg = ({ el, menu }) => {
     const theme = useTheme()
 
     return (
@@ -182,12 +181,12 @@ const ReplyMsg = ({ el }) => {
                     </Typography>
                 </Stack>
             </Box>
-            <MessageOption />
+            {menu && <MessageOption />}
         </Stack>
     )
 }
 
-const MediaMsg = ({ el }) => {
+const MediaMsg = ({ el, menu }) => {
     const theme = useTheme()
     return (
         <Stack
@@ -215,12 +214,12 @@ const MediaMsg = ({ el }) => {
                     </Typography>
                 </Stack>
             </Box>
-            <MessageOption />
+            {menu && <MessageOption />}
         </Stack>
     )
 }
 
-const TextMsg = ({ el }) => {
+const TextMsg = ({ el, menu }) => {
     const theme = useTheme()
     return (
         <Stack direction={'row'} justifyContent={el.incoming ? 'start' : 'end'}>
@@ -241,7 +240,7 @@ const TextMsg = ({ el }) => {
             </Box>
 
             {/* <DotsThreeVertical size={20} /> */}
-            <MessageOption />
+            {menu && <MessageOption />}
         </Stack>
     )
 }

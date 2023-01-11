@@ -28,7 +28,7 @@ const slice = createSlice({
 // Reducer
 export default slice.reducer;
 
-// ----------------------------------------------------------------------
+// thunk fuunctions
 
 export function ToggleSidebar() {
     return async () => {

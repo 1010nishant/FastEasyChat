@@ -26,8 +26,8 @@ import {
     VideoCamera,
     X,
 } from "phosphor-react";
-import useResponsive from "../hooks/useResponsive";
-import AntSwitch from "../components/AntSwitch";
+// import useResponsive from "../hooks/useResponsive";
+import AntSwitch from "./AntSwitch";
 import { useDispatch } from "react-redux";
 import { ToggleSidebar, UpdateSidebarType } from "../redux/slices/app";
 

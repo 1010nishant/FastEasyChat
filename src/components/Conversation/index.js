@@ -22,7 +22,7 @@ const Conversation = () => {
                     height: '100%',
                     overflowY: 'scroll'
                 }}>
-                <Message />
+                <Message menu={true} />
             </Box>
             {/* chat footer */}
             <Footer />
