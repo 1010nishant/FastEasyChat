@@ -1,11 +1,10 @@
 import { useState } from "react";
 import * as Yup from "yup";
-import { Link as RouterLink } from "react-router-dom";
 // form
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 // @mui
-import { Link, Button, Stack, Alert, IconButton, InputAdornment } from "@mui/material";
+import { Stack, Alert, IconButton, InputAdornment, Button } from "@mui/material";
 // import { LoadingButton } from "@mui/lab";
 // components
 import FormProvider, { RHFTextField } from "../../components/hook-form";
@@ -13,10 +12,12 @@ import { Eye, EyeSlash } from "phosphor-react";
 
 // ----------------------------------------------------------------------
 
-export default function AuthLoginForm() {
+export default function AuthRegisterForm() {
     const [showPassword, setShowPassword] = useState(false);
 
     const LoginSchema = Yup.object().shape({
+        firstName: Yup.string().required("First name required"),
+        lastName: Yup.string().required("Last name required"),
         email: Yup.string()
             .required("Email is required")
             .email("Email must be a valid email address"),
@@ -24,6 +25,8 @@ export default function AuthLoginForm() {
     });
 
     const defaultValues = {
+        firstName: "",
+        lastName: "",
         email: "demo@tawk.com",
         password: "demo1234",
     };
@@ -55,10 +58,15 @@ export default function AuthLoginForm() {
 
     return (
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-            <Stack spacing={3}>
+            <Stack spacing={3} mb={4}>
                 {!!errors.afterSubmit && (
                     <Alert severity="error">{errors.afterSubmit.message}</Alert>
                 )}
+
+                <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
+                    <RHFTextField name="firstName" label="First name" />
+                    <RHFTextField name="lastName" label="Last name" />
+                </Stack>
 
                 <RHFTextField name="email" label="Email address" />
 
@@ -81,12 +89,6 @@ export default function AuthLoginForm() {
                 />
             </Stack>
 
-            <Stack alignItems="flex-end" sx={{ my: 2 }}>
-                <Link component={RouterLink} to='/auth/reset-password' variant="body2" color="inherit" underline="always">
-                    Forgot password?
-                </Link>
-            </Stack>
-
             <Button
                 fullWidth
                 color="inherit"
@@ -105,7 +107,7 @@ export default function AuthLoginForm() {
                     },
                 }}
             >
-                Login
+                Create Account
             </Button>
         </FormProvider>
     );
