@@ -11,9 +11,31 @@ import AntSwitch from "../../components/AntSwitch";
 import useSettings from "../../hooks/useSettings";
 import ProfileMenu from "./ProfileMenu";
 
+import { useNavigate } from "react-router-dom";
+
+const getPath = (index) => {
+  switch (index) {
+    case 0:
+      return "/app";
+
+    case 1:
+      return "/group";
+
+    case 2:
+      return "/call";
+
+    case 3:
+      return "/settings";
+
+    default:
+      break;
+  }
+};
+
 const SideNav = () => {
     const { onToggleMode } = useSettings()
     const theme = useTheme()
+    const navigate = useNavigate();
     const [selected, setSelected] = useState(0);// initializing with 0 means IconButton with index 0 will be selected button by default when this page is first rendered onto the screen
     return (
         <>
@@ -65,6 +87,7 @@ const SideNav = () => {
                                         key={el.index}
                                         onClick={() => {
                                             setSelected(el.index)
+                                            navigate(getPath(el.index))
                                         }}
                                     >{el.icon}</IconButton>
                             ))}
@@ -81,6 +104,7 @@ const SideNav = () => {
                                     <IconButton
                                         onClick={() => {
                                             setSelected(3)
+                                            navigate(getPath(3))
                                         }}
                                         sx={{
                                             width: 'max-content',

@@ -20,6 +20,7 @@ export default function RHFTextField({ name, helperText, ...other }) {
             control={control}
             render={({ field, fieldState: { error } }) => (
                 <TextField
+                sx={{mt: 0.7}}
                     {...field}
                     fullWidth
                     value={typeof field.value === 'number' && field.value === 0 ? '' : field.value}

@@ -5,7 +5,10 @@ import { faker } from "@faker-js/faker";
 
 import { Profile_Menu } from "../../data";
 
+import { useNavigate } from "react-router-dom";
+
 const ProfileMenu = () => {
+    const navigate = useNavigate()
     const [anchorEl, setAnchorEl] = React.useState(null);
     const openMenu = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -14,7 +17,19 @@ const ProfileMenu = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
+const getMenuPath = (index) => {
+    switch (index) {
+        case 0:
+            return "/profile"
+        case 1:
+            return "/settings"
+        case 2:
+            return "/auth/login"
+    
+        default:
+            break;
+    }
+}
     return (
         <>
             <Avatar
@@ -47,9 +62,14 @@ const ProfileMenu = () => {
             >
                 <Box p={1}>
                     <Stack spacing={1}>
-                        {Profile_Menu.map((el) => (
-                            <MenuItem onClick={handleClose}>
+                        {Profile_Menu.map((el,idx) => (
+                            <MenuItem onClick={() => {
+                                handleClick()
+                            }}>
                                 <Stack
+                                onClick={() => {
+                                    navigate(getMenuPath(idx))
+                                }}
                                     sx={{ width: 100 }}
                                     direction="row"
                                     alignItems={"center"}
